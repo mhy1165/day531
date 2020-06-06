@@ -82,12 +82,17 @@
 									<td th:text="${emp.id}"></td>
 									<td>[[${emp.lastName}]]</td>
 									<td th:text="${emp.email}"></td>
-									<td th:text="${emp.gender}?'女':'男'"></td>
+									<td th:text="${emp.gender}==0?'女':'男'"></td>
 									<td th:text="${emp.department.departmentName}"></td>
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}"></td>
 									<td>
-										<button class="btn btn-sm btn-primary">编辑</button>
-										<button class="btn btn-sm btn-danger">删除</button>
+										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
+										<form th:action="@{/emp/}+${emp.id}" method="post">
+											<input type="hidden" name="_method" value="delete"/>
+											<button type="submit" class="btn btn-sm btn-danger">删除</button>
+
+										</form>
+
 
 									</td>
 								</tr>
@@ -101,18 +106,18 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="/crud/asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="/crud/asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="/crud/asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" src="/crud/asserts/js/feather.min.js"></script>
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
 		<script>
 			feather.replace()
 		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" src="/crud/asserts/js/Chart.min.js"></script>
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {
