@@ -16,7 +16,7 @@
 		<link href="/crud/asserts/css/dashboard.css" rel="stylesheet">
 		<style type="text/css">
 			/* Chart.js */
-			
+
 			@-webkit-keyframes chartjs-render-animation {
 				from {
 					opacity: 0.99
@@ -25,7 +25,7 @@
 					opacity: 1
 				}
 			}
-			
+
 			@keyframes chartjs-render-animation {
 				from {
 					opacity: 0.99
@@ -34,7 +34,7 @@
 					opacity: 1
 				}
 			}
-			
+
 			.chartjs-render-monitor {
 				-webkit-animation: chartjs-render-animation 0.001s;
 				animation: chartjs-render-animation 0.001s;
@@ -87,11 +87,8 @@
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
-										<form th:action="@{/emp/}+${emp.id}" method="post">
-											<input type="hidden" name="_method" value="delete"/>
-											<button type="submit" class="btn btn-sm btn-danger">删除</button>
+										<button type="submit" th:attr="del_url=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
 
-										</form>
 
 
 									</td>
@@ -100,18 +97,34 @@
 						</table>
 					</div>
 				</main>
+				<form id="deleteEmpForm"  method="post">
+					<input type="hidden" name="_method" value="delete"/>
+				</form>
 			</div>
 		</div>
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap.min.js}"></script>
 
+<!-- =============================================使用jquery进行删除=============================================================================-->
+		<script>
+			$(".deleteBtn").click(function(){ //$相当于 document.getElementById 当点击deleteBtn按钮时，执行方法
+
+				// $(this).attr("del_url") this代表当前按钮 deleteBtn,attr() 方法设置或返回被选元素的属性值
+				//删除当前员工的,获取deleteEmpForm的action属性并提交
+				$("deleteEmpForm").attr("action",$(this).attr("del_url")).submit();
+				return false;
+			});
+
+
+		</script>
+<!-- =============================================使用jquery进行删除=========================================================================================================== -->
 		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="/asserts/js/feather.min.js"></script>
 		<script>
 			feather.replace()
 		</script>

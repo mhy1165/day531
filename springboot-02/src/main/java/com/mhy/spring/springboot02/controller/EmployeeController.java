@@ -79,6 +79,7 @@ public class EmployeeController {
     }
 
     //delete
+    @PostMapping("/emp/{id}")
     @DeleteMapping("/emp/{id}")
     public String delete(@PathVariable("id") Integer id) {
         employeeDao.delete(id);

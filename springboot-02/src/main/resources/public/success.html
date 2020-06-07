@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成功</title>
+</head>
+<body>
+<h1>成功</h1>
+
+<!--th:text 将div里面的文本内容设置为 -->
+<!--/*@thymesVar id="hello" type="com"*/-->
+<div th:text="${hello}"></div></hr>
+<div th:utext="${hello}"></div><hr>
+<!--<div th:each="" th:if="" th:switch="" th:case=""></div>-->
+<!--/*@thymesVar id="users" type="com"*/-->
+<h4 th:text="${users}" th:each="user:${users}    "></h4>
+</hr>
+<span th:each="${users}"></span>
+
+
+
+
+
+</body>
+</html>
